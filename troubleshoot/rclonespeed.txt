@@ -1,0 +1,5 @@
+Max Speed Rclone:
+rclone copy -P -v --buffer-size=256M --drive-chunk-size=128M --drive-upload-cutoff=128M --transfers 20 --checkers 20 
+
+
+rclone move -P -v --buffer-size=256M --drive-chunk-size=128M --drive-upload-cutoff=128M --transfers 20 --checkers 20 

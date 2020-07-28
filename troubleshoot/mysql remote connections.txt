@@ -1,0 +1,7 @@
+If remote connections arent working for mysql then 
+
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+after that find 'bind-address' and change it to the public ip [check with ' bash ifconfig '] of your server and then restart mysql service
+
+sudo systemctl restart mysql

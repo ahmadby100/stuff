@@ -1,0 +1,27 @@
+[Unit]
+Description=RClone Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+KillMode=none
+Environment=GOMAXPROCS=2
+
+ExecStart=rclone mount gdrive: /home/amady/mnt \
+  --user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36' \
+  --config /home/amady/.config/rclone/rclone.conf \
+  --use-mmap \
+  --dir-cache-time 168h \
+  --timeout 1h \
+  --allow-other \
+  --umask 002 \
+  --poll-interval=1m \
+  --vfs-cache-mode writes \
+  --vfs-read-chunk-size 64M \
+  --vfs-read-chunk-size-limit 2048M \
+ExecStop=/bin/fusermount -uz /home/amady/mnt
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

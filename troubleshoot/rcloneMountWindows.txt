@@ -1,0 +1,1 @@
+mount --log-file "C:\rclone\rclonegdrive.log" --log-level INFO --allow-non-empty --allow-other --fuse-flag sync_read --dir-cache-time=1h --buffer-size=128M --attr-timeout=1s --vfs-read-chunk-size=2M --vfs-read-chunk-size-limit=2G --vfs-cache-max-age=5m --vfs-cache-mode=full --cache-dir "D:\cache\gdrive" "Google Drive": M: --config "C:\rclone\rclone.conf"

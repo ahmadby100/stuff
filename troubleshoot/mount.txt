@@ -1,0 +1,18 @@
+Linux Service Commad
+
+rclone mount gdrive: /home/amady/mnt \
+  --user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36' \
+  --config /home/amady/.config/rclone/rclone.conf \
+  --use-mmap \
+  --dir-cache-time 168h \
+  --timeout 1h \
+  --allow-other \
+  --umask 002 \
+  --poll-interval=1m \
+  --vfs-cache-mode writes \
+  --vfs-read-chunk-size 64M \
+  --vfs-read-chunk-size-limit 2048M
+
+NSSM Command:
+
+mount --log-file "C:\rclone\log\rclonegdrive.log" --log-level INFO --allow-other --fuse-flag sync_read  --dir-cache-time=160h --attr-timeout=1s --vfs-read-chunk-size=64M --vfs-read-chunk-size-limit=2048M --vfs-cache-max-age=5m --vfs-cache-mode=writes --cache-dir "D:\cache\gdrive" --config "C:\rclone\rclone.conf" "Google Drive": M: 

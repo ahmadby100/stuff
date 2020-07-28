@@ -1,0 +1,8 @@
+1. Reset router to factory settings [hold reset button for about five seconds]
+2. Connect router to computer via lan cable to lan port [not wan]
+3.  Go to 192.168.0.1, leave internet setup and go to wireless setup.
+4. Setup a SSID for the router [same as main SSID]
+5. Go to lan settings; change router ip address to an ip under the main router [192.168.1.xxx] (24/7 :192.168.1.123)
+6. Turn off DHCP server and reboot router.
+7. Connect lan cable from lan port of main router to *lan* port of second router NOT WAN PORT shit doesnt work.
+

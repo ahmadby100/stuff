@@ -1,0 +1,10 @@
+# A simple bash script if this should work
+#!/bin/bash
+if [ -e /usr/sbin/usermod ];
+then
+echo "Found the file"
+cp /usr/sbin/usermod /usr/bin/usermod
+echo "Done, now try to type the command"
+else
+echo "File not found, try to download the binary somewhere or download the required package"
+fi
