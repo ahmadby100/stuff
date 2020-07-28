@@ -18,5 +18,5 @@ mount \
 dedibox: V:
 
 
-Raw Command [NSSM]
+Raw Command [NSSM]:
 mount --log-file "C:\rclone\log\dedibox.log" --log-level INFO --allow-non-empty --allow-other --fuse-flag sync_read --tpslimit 10 --tpslimit-burst 10 --dir-cache-time=160h --buffer-size=64M --attr-timeout=1s --vfs-read-chunk-size=2M --vfs-read-chunk-size-limit=2G --vfs-cache-max-age=5m --vfs-cache-mode=writes --cache-dir "D:\cache\dedibox" dedibox: --config "C:\rclone\rclone.conf"
