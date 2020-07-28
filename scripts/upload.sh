@@ -9,7 +9,7 @@
 SOURCE_DIR="/home/amady/upload"
 DESTINATION_DIR="gdrive:"
 
-DISCORD_WEBHOOK_URL="https://discordapp.com/api/webhooks/728133943039230013/Miz4VwqX9FzXpO8HTP7ckeyaI1qnzXuNDIWvtYosj5lYIGvPw8sAUdiNcmMEQ2Y7DndM"
+DISCORD_WEBHOOK_URL="url"
 DISCORD_ICON_OVERRIDE="https://i.imgur.com/MZYwA1I.png"
 DISCORD_NAME_OVERRIDE="Rclone"
 
