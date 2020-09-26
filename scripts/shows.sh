@@ -193,6 +193,8 @@
 
             #Sorts A-Z for nicer viewing into new file which is read by Shows/index.php 
             sort /var/www/strm.bluetables.space/direct/mov/unsorted.txt > /var/www/strm.bluetables.space/direct/mov/final.txt
+	    
+	    echo "  Poster entry added and sorted" >> newlyadded.txt
         fi
     }
 
