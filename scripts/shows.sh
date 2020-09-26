@@ -4,7 +4,7 @@
     # jq is required to parse JSON 
     # curl is used to call the API
     # The Movie Database API is used, Please add in your API Key from their website below:
-    apikey="APIKEY"
+    apikey=""
 
 
     #Setting colors
@@ -41,9 +41,9 @@
     #Convert to URL by changing spaces into %20
 	titleurl=${cleanpath// /%20}
 
-    #executing API calls
+    #executing search API call
     data=$(query)
-    iddata=$(idquery)
+    
 
     #Filtering Name
 	name=$(echo "$data" | jq '.results[0] .name' | tr -d "\"")
@@ -107,6 +107,8 @@
             echo "  TmDB ID: Found" >> newlyadded.txt
             echo "${cyan}TmDB ID: $id${endline}"
         fi
+    #Executes id search API call
+    iddata=$(idquery)
 
     #Filtering youtube url key
     youtube1=$(echo "$iddata" | jq '.. | .key? // empty' | tr -d "\"" ) 
