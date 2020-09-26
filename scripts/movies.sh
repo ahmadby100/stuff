@@ -4,7 +4,7 @@
     # jq is required to parse JSON 
     # curl is used to call the API
     # The Movie Database API is used, Please add in your API Key from their website below:
-    apikey="a359adb0d308edb4b532a6dedc37a2e5"
+    apikey=""
 
 
     #Setting colors
@@ -212,6 +212,8 @@
 
             #Sorts A-Z for nicer viewing into new file which is read by Movies/index.php 
             sort /var/www/strm.bluetables.space/direct/mov/unsortedmovies.txt > /var/www/strm.bluetables.space/direct/mov/finalmovies.txt
+	    
+	    echo "  Poster entry added and sorted" >> newlyadded.txt
         fi
     }
 
