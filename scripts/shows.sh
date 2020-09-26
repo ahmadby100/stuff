@@ -4,7 +4,7 @@
     # jq is required to parse JSON 
     # curl is used to call the API
     # The Movie Database API is used, Please add in your API Key from their website below:
-    apikey=""
+    apikey="a359adb0d308edb4b532a6dedc37a2e5"
 
 
     #Setting colors
@@ -22,6 +22,7 @@
     echo "${green}Enter the name of the Show: ${red}[Make sure the name is exactly as the path or else it will break]${cyan}"
     read -r shows
     echo "${endline}"
+
     function query {
         curl -s --request GET \
             --url "https://api.themoviedb.org/3/search/tv?query=$titleurl&language=en-US&api_key=$apikey" \
@@ -69,6 +70,7 @@
 
     tput bold; echo "${purple}$name${endline}"
     echo "$name" >> newlyadded.txt
+    
     #Filtering user rating
     rating=$(echo "$data" | jq '.results[0] .vote_average' | tr -d "\"")
     
@@ -107,6 +109,7 @@
             echo "  TmDB ID: Found" >> newlyadded.txt
             echo "${cyan}TmDB ID: $id${endline}"
         fi
+
     #Executes id search API call
     iddata=$(idquery)
 
@@ -164,7 +167,7 @@
             echo "${green}Backdrop path: $backdrop ${endline}"
         fi
 
-    #Downloading posters to ../mov/MOVIE_FOLDER/
+    #Downloading posters to ../mov/SHOW_FOLDER/
     curl -s http://image.tmdb.org/t/p/w154$poster --create-dirs -o /var/www/strm.bluetables.space/direct/mov/poster/"$poster"
 
 
@@ -206,7 +209,7 @@
     #Writes a HEADER file with the information directly into the show's directory
 
 cat << EOF > /var/www/strm.bluetables.space/direct/Shows/"$shows"/HEADER.md
-# <b style="font-size: 30px">$shows<span style="color: #9d9e9d"> ($year)</span></b>
+# <b style="font-size: 30px">$name<span style="color: #9d9e9d"> ($year)</span></b>
 
 <b><center>
     <span style="color: #9d9e9d">
@@ -236,5 +239,7 @@ cat << EOF > /var/www/strm.bluetables.space/direct/Shows/"$shows"/HEADER.md
     $overview
 </p></center>
 EOF
+echo "HEADER file generated for $name"
+echo "HEADER.md: Generated" >> newlyadded.txt
 
 tput bold; echo "${purple}TV Show successfully added!${endline}"
