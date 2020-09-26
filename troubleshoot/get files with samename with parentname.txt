@@ -1,0 +1,4 @@
+cd folder
+for f in */poster.jpg; do
+    cp -v "$f" ~/img/"${f//\//_}"
+done

@@ -1,0 +1,1 @@
+rclone copy -P -v --buffer-size=256M --drive-chunk-size=128M --drive-upload-cutoff=128M --transfers 20 --checkers 20 --ignore-existing --log-file "C:\rclone\log\studiessync.txt D:\Studies\IIUM Onedrive:"/192 [1-1]/"

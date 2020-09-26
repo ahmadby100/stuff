@@ -19,7 +19,7 @@ ExecStart=rclone mount gdrive: /home/amady/mnt \
   --poll-interval=1m \
   --vfs-cache-mode writes \
   --vfs-read-chunk-size 64M \
-  --vfs-read-chunk-size-limit 2048M \
+  --vfs-read-chunk-size-limit 2048M 
 ExecStop=/bin/fusermount -uz /home/amady/mnt
 Restart=on-failure
 

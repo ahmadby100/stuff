@@ -1,0 +1,15 @@
+<input type="text" id="myinput" name="search" placeholder="search..."><br>
+
+
+<script>
+$("#myinput").keyup(function() {
+var val = $.trim(this.value);
+    if (val === "")
+        $('img').show();
+    else {
+        $('img').hide();
+        val = val.split(" ").join("\\ ");
+        $("img[alt*=" + val + " i]").show();
+    }
+});
+</script>

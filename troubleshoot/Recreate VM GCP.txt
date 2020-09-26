@@ -1,0 +1,6 @@
+- Make a snapshot of the current disk 
+- Use the following command in cloud shell to create a disk in a foreign project:
+	gcloud compute disks create vm-prod-disk --source-snapshot \
+	 https://www.googleapis.com/compute/v1/projects/<source-\
+	 project>/global/snapshots/<source-vm-snapshot> --project target-project
+- Use the disk in that project to make another VM
