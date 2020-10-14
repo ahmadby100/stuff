@@ -4,7 +4,7 @@
     # jq is required to parse JSON 
     # curl is used to call the API
     # The Movie Database API is used, Please add in your API Key from their website below:
-    apikey=""
+    apikey="a359adb0d308edb4b532a6dedc37a2e5"
 
 
     #Setting colors
@@ -69,7 +69,7 @@
         fi
 
     tput bold; echo "${purple}$name${endline}"
-    echo "$name" >> newlyadded.txt
+    echo "$name" >> /var/www/test/test/newlyadded.txt
     
     #Filtering user rating
     rating=$(echo "$data" | jq '.results[0] .vote_average' | tr -d "\"")
@@ -77,9 +77,9 @@
         if [ -z "$rating" ]
         then
             echo "${red}Error finding rating${endline}"
-            echo "  Error finding rating" >> newlyadded.txt
+            echo "  Error finding rating" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Rating: Found" >> newlyadded.txt
+            echo "  Rating: Found" >> /var/www/test/test/newlyadded.txt
             echo "${cyan}Rating: $rating/10${endline}"
         fi
 
@@ -90,9 +90,9 @@
         if [ -z "$overview" ]
         then
             echo "${red}Error finding description${endline}"
-            echo "  Error finding description" >> newlyadded.txt
+            echo "  Error finding description" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Overview: Found" >> newlyadded.txt        
+            echo "  Overview: Found" >> /var/www/test/test/newlyadded.txt        
             tput bold; echo "${green}Overview: ${endline}"
             echo "${green}$overview${endline}"
             echo " "
@@ -104,9 +104,9 @@
         if [ -z "$id" ]
         then
             echo "${red}Error finding id${endline}" 
-            echo "  Error finding id" >> newlyadded.txt
+            echo "  Error finding id" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  TmDB ID: Found" >> newlyadded.txt
+            echo "  TmDB ID: Found" >> /var/www/test/test/newlyadded.txt
             echo "${cyan}TmDB ID: $id${endline}"
         fi
 
@@ -120,9 +120,9 @@
         if [ -z "$youtube" ]
         then
             echo "${red}Error finding trailer${endline}"
-            echo "  Error finding trailer" >> newlyadded.txt
+            echo "  Error finding trailer" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Trailer: Found" >> newlyadded.txt
+            echo "  Trailer: Found" >> /var/www/test/test/newlyadded.txt
             echo "${green}Trailer path (on youtube): $youtube ${endline}"
         fi
     
@@ -132,9 +132,9 @@
         if [[ -z "$seasons" || $seasons == "null" ]]
         then
             echo "${red}Error finding number of Seasons${endline}"
-            echo "  Error finding number of Seasons" >> newlyadded.txt
+            echo "  Error finding number of Seasons" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Seasons: Found" >> newlyadded.txt
+            echo "  Seasons: Found" >> /var/www/test/test/newlyadded.txt
             echo "${green}$seasons Season(s) ${endline}"
         fi
 
@@ -149,9 +149,9 @@
         if [ -z "$poster" ]
         then
             echo "${red}Error finding poster${endline}"
-            echo "  Error finding poster" >> newlyadded.txt
+            echo "  Error finding poster" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Poster: Found" >> newlyadded.txt
+            echo "  Poster: Found" >> /var/www/test/test/newlyadded.txt
             echo "${cyan}Poster path: $poster ${endline}"
         fi
 
@@ -161,9 +161,9 @@
         if [ $backdrop == "null" ]
         then
             echo "${red}Error finding backdrop${endline}"
-            echo "  Error finding backdrop" >> newlyadded.txt
+            echo "  Error finding backdrop" >> /var/www/test/test/newlyadded.txt
         else
-            echo "  Backdrop: Found" >> newlyadded.txt
+            echo "  Backdrop: Found" >> /var/www/test/test/newlyadded.txt
             echo "${green}Backdrop path: $backdrop ${endline}"
         fi
 
@@ -181,8 +181,8 @@
         if grep -q "$name" "$check";
         then
             echo "${red}Poster entry exists${endline}"
-            echo " " >> newlyadded.txt
-            echo "  Poster entry exists" >> newlyadded.txt
+            echo " " >> /var/www/test/test/newlyadded.txt
+            echo "  Poster entry exists" >> /var/www/test/test/newlyadded.txt
             return
         else
             #Adding newly added entry into index page of Shows
@@ -193,8 +193,8 @@
 
             #Sorts A-Z for nicer viewing into new file which is read by Shows/index.php 
             sort /var/www/strm.bluetables.space/direct/mov/unsorted.txt > /var/www/strm.bluetables.space/direct/mov/final.txt
-	    
-	    echo "  Poster entry added and sorted" >> newlyadded.txt
+            
+            echo "  Poster entry added and sorted" >> /var/www/test/test/newlyadded.txt
         fi
     }
 
@@ -202,8 +202,7 @@
     insertIntoPage
 
 
-    echo "------------------------------" >> newlyadded.txt
-    echo " " >> newlyadded.txt
+
     
     #Makes mov/* folders executable (755) as curl making directories make them inaccessible 
     chmod 755 -R /var/www/strm.bluetables.space/direct/mov/
@@ -241,7 +240,23 @@ cat << EOF > /var/www/strm.bluetables.space/direct/Shows/"$shows"/HEADER.md
     $overview
 </p></center>
 EOF
-echo "HEADER file generated for $name"
-echo "HEADER.md: Generated" >> newlyadded.txt
 
+#Checks if HEADER File is actually generated and placed in folder
+checkHeader() {
+    if [ -f "/var/www/strm.bluetables.space/direct/Shows/"$shows"/HEADER.md" ]; then
+        echo "HEADER file generated for $name"
+        echo "HEADER.md: Generated" >> /var/www/test/test/newlyadded.txt
+    else
+        echo "${red}Error Generating HEADER.md${endline}"
+        echo "  Error Generating HEADER.md" >> /var/www/test/test/newlyadded.txt
+    fi
+}
+
+#Calls checkHeader
+checkHeader
+
+echo "------------------------------" >> /var/www/test/test/newlyadded.txt
+echo " " >> /var/www/test/test/newlyadded.txt
+
+sleep 2
 tput bold; echo "${purple}TV Show successfully added!${endline}"
